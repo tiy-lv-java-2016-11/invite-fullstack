@@ -41,4 +41,4 @@ Welcome to your first full stack homework.  This is going to use both Spark as w
 	* When the information is stored redirect to "/"
 
 ## Resources
-*[Github Repo](https://github.com/tiy-lv-java-2016-11/invite-fullstack)
+* [Github Repo](https://github.com/tiy-lv-java-2016-11/invite-fullstack)
