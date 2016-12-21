@@ -49,8 +49,34 @@ Welcome to your first full stack homework.  This is going to use both Spark as w
 * Now that we have a login only allow people who have logged in to approve/reject an invitee.  Simply disable the buttons if there is no logged in user.
 
 ## Nightmare Mode
-* Change your back end to have `/mark-invitee` accept json data coming in and return json back out
-* Change the front end to use ajax to post directly to the back end when an invitee is approved/rejected.
+We are going to take this to the next level of program.  We know that similar programs wouldn't just have 1 event nor would they allow everyone to edit it.  Let's fix this.
+* A visitor is no longer allowed to use the site so send them directly to the login screen if not logged in
+* When a user logs in their home page ("/") will be a list of events they have created.
+* A user can add a new event that will take them to a seperate page with a form where they may enter all of the details of the event
+	* Name
+	* Date and time
+	* Location
+	* Description
+* The form will post to the back end and create the event and assign it to the user.
+* Validate the data coming from the form (make sure that it is filled in as well as the date being in the future)
+* Create an `Event` class as well as a database table to back it
+* From the home screen the user may also select an event which should take them to the page from the main assignment where they may add users one at a time
+
+## Epic Mode
+Finally, we want the user to see all events they have been invited to as well.  To save friendships we will avoid telling them the events that they were rejected from.  We will also be enhancing the site as a whole.
+* Create a navigation bar of some sort on the home page that will give the following options and persisted across all pages:
+	* My Events
+	* Invited
+	* Account
+	* Logout
+* Invited
+	* Create an "/invited" page that will display a list of all events they have been invited to.
+	* If they click the event it will show the details as well as everyone that has been invited
+* Account
+	* This page will give the user the ability to change their password.
+	* Make them enter their current password as well as the new password 2x
+	* Check to ensure that the current password is correct and the new passwords match
+* Tie the whole site together with the navigation.
 
 ## Resources
 * [Github Repo](https://github.com/tiy-lv-java-2016-11/invite-fullstack)
