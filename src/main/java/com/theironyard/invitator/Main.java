@@ -1,3 +1,5 @@
+package com.theironyard.invitator;
+
 import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;

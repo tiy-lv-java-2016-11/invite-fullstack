@@ -1,3 +1,5 @@
+package com.theironyard.invitator;
+
 /**
  * Created by melmo on 12/22/16.
  */
@@ -9,7 +11,7 @@ public class User {
     public User(){}
 
     public User(String username, String password) {
-        this.userId = 0;
+        this.userId = 1;
         this.username = username;
         this.password = password;
     }

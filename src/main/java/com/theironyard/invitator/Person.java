@@ -1,3 +1,5 @@
+package com.theironyard.invitator;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -46,6 +48,22 @@ public class Person {
         this.personId = personId;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public boolean isInvited() {
+        return invited;
+    }
+
+    public void setInvited(boolean invited) {
+        this.invited = invited;
+    }
+
     public String getName() {
         return name;
     }
@@ -91,6 +109,7 @@ public class Person {
         insert.setString(4, this.email);
         insert.setString(5, this.photoUrl);
         insert.setBoolean(6, this.invited);
+        insert.executeUpdate();
     }
 
     /* *
@@ -108,6 +127,7 @@ public class Person {
             insert.setString(4, p.email);
             insert.setString(5, p.photoUrl);
             insert.setBoolean(6, p.invited);
+            insert.executeUpdate();
         }
     }
 }
