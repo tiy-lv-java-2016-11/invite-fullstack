@@ -20,10 +20,18 @@
 				<p>Phone:<span id="phone"></span></p>
 				<p>Email:<span id="email"></span></p>
 			</div>
+			{{#currentUser}}
 			<form class="buttons" action="/submit" method="post" id="submit">
 				<button class="cross" type="submit" name="invited" value="false">&cross;</button>
 				<button class="check" type="submit" name="invited" value="true">&check;</button>
 			</form>
+			{{/currentUser}}
+			{{^currentUser}}
+			<form class="buttons" action="/submit" method="post" id="submit">
+				<button class="cross" type="submit" name="invited" value="false" disabled>&cross;</button>
+				<button class="check" type="submit" name="invited" value="true" disabled>&check;</button>
+			</form>
+			{{/currentUser}}
 		</div>
 	</main>
 	<script

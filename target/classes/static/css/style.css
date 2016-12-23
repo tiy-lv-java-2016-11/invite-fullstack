@@ -34,7 +34,7 @@ main{
 }
 
 h1{
-	font-family: "Arial Black";
+	font-family: "Arial Black", sans-serif;
 	font-size: 24px;
 	padding: 10px;
 	margin-top: 10px;

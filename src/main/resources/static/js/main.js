@@ -6,7 +6,7 @@ function getRandomPerson() {
         var phone = person.cell;
         var email = person.email;
         var photo = person.picture.large;
-        console.log(person)
+        console.log(person);
         $("#name").html(name);
         $("#phone").html(phone);
         $("#email").html(email);
@@ -20,7 +20,4 @@ $(document).ready(function () {
 
 	getRandomPerson();
 	
-}
-
-
-)
+});
