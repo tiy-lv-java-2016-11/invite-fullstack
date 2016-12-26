@@ -12,6 +12,7 @@ public class Main {
     public static ArrayList<String> going = new ArrayList<>();
     public static ArrayList<String> notGoing = new ArrayList<>();
     public static void main(String[] args) {
+        Spark.staticFileLocation("/public");
         Spark.init();
 
 //        Create a route for "/" that will display the invite page with the user counts
