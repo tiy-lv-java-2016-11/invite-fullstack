@@ -17,7 +17,7 @@ Welcome to your first full stack homework.  This is going to use both Spark as w
 * Going/Not Going
 	* Display all the users who are going or not going depending on the page
 	* Layout as shown in the screenshot
-* Convert the html to use moustache tags where needed
+* Convert the html to use mustache tags where needed
 * Put all assets in the templates directory in your project
 
 #### Invite
