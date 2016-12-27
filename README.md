@@ -59,7 +59,7 @@ We are going to take this to the next level of program.  We know that similar pr
 	* Description
 * The form will post to the back end and create the event and assign it to the user.
 * Validate the data coming from the form (make sure that it is filled in as well as the date being in the future)
-* Create an `Event` class as well as a database table to back it
+* Create an `com.theironyard.invitator.Event` class as well as a database table to back it
 * From the home screen the user may also select an event which should take them to the page from the main assignment where they may add users one at a time
 
 ## Epic Mode
