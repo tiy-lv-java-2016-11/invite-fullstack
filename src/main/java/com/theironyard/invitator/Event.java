@@ -1,9 +1,8 @@
 package com.theironyard.invitator;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by melmo on 12/22/16.
@@ -12,22 +11,79 @@ public class Event {
     private Integer eventId;
     private Integer userId;
     private String name;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private String location;
     private String description;
-    private List<Person> invited = new ArrayList<>();
-    private List<Person> notInvited = new ArrayList<>();
+    private Map<Integer, Person> invitedList = new HashMap<>();
+    private Map<Integer, Person> notInvitedList = new HashMap<>();
 
-    public Event(Integer eventId, Integer userId, String name, Date date, String location, String description) {
+    public Event(Integer eventId, Integer userId, String name, String date, String time, String location, String description) {
         this.eventId = eventId;
         this.userId = userId;
         this.name = name;
         this.date = date;
+        this.time = time;
         this.location = location;
         this.description = description;
     }
 
+    public Event(String name, String date, String time, String location, String description, Integer userId){
+        this.eventId = 0;
+        this.userId = userId;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.description = description;
+    }
+
+    public void saveEvent() throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:postgresql:invitation");
+        PreparedStatement insert = connection.prepareStatement(
+                "INSERT INTO events (name, date, time, location, description, user_id) VALUES (?,?,?,?,?,?)",
+                Statement.RETURN_GENERATED_KEYS);
+        insert.setString(1, this.name);
+        insert.setString(2, this.date);
+        insert.setString(3, this.time);
+        insert.setString(4, this.location);
+        insert.setString(5, this.description);
+        insert.setInt(6, this.userId);
+        insert.executeUpdate();
+        ResultSet rs = insert.getGeneratedKeys();
+        rs.next();
+        this.eventId = rs.getInt("event_id");
+    }
+
+    public static void loadEvents(User user) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:postgresql:invitation");
+        PreparedStatement load = connection.prepareStatement(
+                "SELECT event_id, name, date, time, location, description FROM events WHERE user_id=?");
+        load.setInt(1, user.getUserId());
+        ResultSet rs = load.executeQuery();
+        while (rs.next()){
+            Integer eventId = rs.getInt("event_id");
+            String name = rs.getString("name");
+            String date = rs.getString("date");
+            String time = rs.getString("time");
+            String location = rs.getString("location");
+            String description = rs.getString("description");
+            Event event = new Event(eventId, user.getUserId(), name, date, time, location, description);
+            Person.loadPeople(event);
+            user.addEvent(event);
+        }
+    }
+
+    public void addPerson(Person person){
+        if (person.isInvited()){
+            this.invitedList.put(person.getPersonId(), person);
+        }
+        else {
+            this.notInvitedList.put(person.getPersonId(), person);
+        }
+    }
+
+//-------------------------------------------------------------------------
     public Integer getEventId() {
         return eventId;
     }
@@ -52,19 +108,19 @@ public class Event {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -84,19 +140,19 @@ public class Event {
         this.description = description;
     }
 
-    public List<Person> getInvited() {
-        return invited;
+    public Map<Integer, Person> getInvitedList() {
+        return invitedList;
     }
 
-    public void setInvited(List<Person> invited) {
-        this.invited = invited;
+    public void setInvitedList(Map<Integer, Person> invitedList) {
+        this.invitedList = invitedList;
     }
 
-    public List<Person> getNotInvited() {
-        return notInvited;
+    public Map<Integer, Person> getNotInvitedList() {
+        return notInvitedList;
     }
 
-    public void setNotInvited(List<Person> notInvited) {
-        this.notInvited = notInvited;
+    public void setNotInvitedList(Map<Integer, Person> notInvitedList) {
+        this.notInvitedList = notInvitedList;
     }
 }

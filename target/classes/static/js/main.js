@@ -7,12 +7,14 @@ function getRandomPerson() {
         var email = person.email;
         var photo = person.picture.large;
         console.log(person);
-        $("#name").html(name);
-        $("#phone").html(phone);
-        $("#email").html(email);
+        $("#spanName").html(name);
+        $("#spanPhone").html(phone);
+        $("#spanEmail").html(email);
         $("#photo").attr("src", photo);
-        $("#submit").attr("action", `/submit?name=${name}&phone=${phone}&email=${email}&photo=${photo}`);
-
+        $("#name").attr("value", name);
+        $("#phone").attr("value", phone);
+        $("#email").attr("value", email);
+        $("#photoUrl").attr("value", photo);
     })
 }
 

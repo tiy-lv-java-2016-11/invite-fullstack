@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new event</title>
+</head>
+<body>
+<h1>Create a new Event</h1>
+<form action="/create_event" method="post">
+    <input type="hidden" name="userId" value="{{user.userId}}">
+    <label for="name" >Event Name</label>
+    <input id="name" type="text" name="name" placeholder="Enter a name for the event"/>
+    <label for="date" >Date</label>
+    <input id="date" type="date" name="date" placeholder="Pick a date"/>
+    <label for="time" >Start Time</label>
+    <input id="time" type="time" name="time" placeholder="Pick a start time" />
+    <label for="location">Location</label>
+    <input id="location" type="text" name="location" placeholder="Enter the location for the event" />
+    <label for="description">Description</label>
+    <input id="description" type="text" name="description" placeholder="Enter a description for the event" />
+    <button type="submit">Create Event</button>
+</form>
+
+</body>
+</html>
