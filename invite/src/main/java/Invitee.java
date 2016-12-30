@@ -7,6 +7,9 @@ public class Invitee {
     private String email;
     private String picture;
 
+    public Invitee() {
+    }
+
     public Invitee(String name, String phoneNumber, String email, String picture) {
         this.name = name;
         this.phoneNumber = phoneNumber;

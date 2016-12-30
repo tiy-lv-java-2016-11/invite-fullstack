@@ -11,6 +11,11 @@ import spark.template.mustache.MustacheTemplateEngine;
 public class Main {
     static ArrayList<Invitee> invited = new ArrayList<>();
     static ArrayList<Invitee> notInvited = new ArrayList<>();
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Spark.staticFileLocation("/public");
         Spark.init();
@@ -23,7 +28,7 @@ public class Main {
          return new ModelAndView(a, "index.html");
         }), new MustacheTemplateEngine());
 
-        Spark.post("/index", ((request, response) -> {
+        Spark.post("/submit", ((request, response) -> {
             String name = request.queryParams("name");
             String phone = request.queryParams("phone");
             String email = request.queryParams("email");
